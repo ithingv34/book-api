@@ -1,3 +1,4 @@
+
 service-book-code-quality:
   stage: test
   image: registry.gitlab.com/ithingv34/book-api:cicd-python3.8-slim
@@ -10,3 +11,19 @@ service-book-code-quality:
     - poetry run isort . --check-only --profile black
     - poetry run bandit .
     - poetry run safety check
+
+  
+service-book-tests:
+  stage: test
+  image: registry.gitlab.com/ithingv34/book-api:cicd-python3.8-slim
+  before_script:
+    - cd services/book/
+    - poetry install
+  script:
+    - poetry run python -m pytest --junitxml=report.xml --cov=./ --cov-report=xml tests/unit tests/integration
+  after_script:
+    - bash <(curl -s https://codecov.io/bash)
+  artifacts:
+    when: always
+    reports:
+      junit: services/book/report.xml
