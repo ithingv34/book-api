@@ -13,7 +13,7 @@ build-python-ci-image:
     changes:
       - ci_cd/python/Dockerfile
     refs:
-      - master
+      - main
 
 service-talk-booking-code-quality:
   stage: test
@@ -30,7 +30,7 @@ service-talk-booking-code-quality:
   only:
     refs:
       - merge_requests
-      - master
+      - main
     changes:
       - services/book/**/*
 
@@ -51,6 +51,6 @@ service-talk-booking-tests:
   only:
     refs:
       - merge_requests
-      - master
+      - main
     changes:
       - services/book/**/*
