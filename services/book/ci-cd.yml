@@ -7,8 +7,8 @@ build-python-ci-image:
     - cd ci_cd/python/
   script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-    - docker build -t registry.gitlab.com/ithingv34/book-api:cicd-python3.9-slim .
-    - docker push registry.gitlab.com/ithingv34/book-api:cicd-python3.9-slim
+    - docker build -t registry.gitlab.com/ithingv34/book-api:cicd-python3.8-slim .
+    - docker push registry.gitlab.com/ithingv34/book-api:cicd-python3.8-slim
   only:
     changes:
       - ci_cd/python/Dockerfile
@@ -17,7 +17,7 @@ build-python-ci-image:
 
 service-talk-booking-code-quality:
   stage: test
-  image: registry.gitlab.com/ithingv34/book-api:cicd-python3.9-slim
+  image: registry.gitlab.com/ithingv34/book-api:cicd-python3.8-slim
   before_script:
     - cd services/book/
     - poetry install
@@ -36,7 +36,7 @@ service-talk-booking-code-quality:
 
 service-talk-booking-tests:
   stage: test
-  image: registry.gitlab.com/ithingv34/book-api:cicd-python3.9-slim
+  image: registry.gitlab.com/ithingv34/book-api:cicd-python3.8-slim
   before_script:
     - cd services/book/
     - poetry install
