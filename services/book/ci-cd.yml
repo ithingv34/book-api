@@ -15,7 +15,7 @@ build-python-ci-image:
     refs:
       - main
 
-service-talk-booking-code-quality:
+service-book-code-quality:
   stage: test
   image: registry.gitlab.com/ithingv34/book-api:cicd-python3.8-slim
   before_script:
@@ -34,7 +34,7 @@ service-talk-booking-code-quality:
     changes:
       - services/book/**/*
 
-service-talk-booking-tests:
+service-book-tests:
   stage: test
   image: registry.gitlab.com/ithingv34/book-api:cicd-python3.8-slim
   before_script:
